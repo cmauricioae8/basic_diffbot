@@ -43,7 +43,7 @@ For example:
 
 ## Cloning and building this repo
 
-```
+```bash
 cd ~/colcon_ws/src
 git clone https://github.com/cmauricioae8/basic_diffbot.git
 cd ~/colcon_ws
@@ -55,6 +55,20 @@ If command 'rosdep' not found, use:
 ```
 sudo apt install python3-rosdep2
 ```
+
+If an error appears indicating that rosdep has not been initialized, so run:
+```
+rosdep update
+```
+
+If <br>
+`Error(s) in package '/home/user/colcon_ws/src/basic_diffbot/package.xml':
+The manifest contains invalid XML:
+not well-formed (invalid token): line 31, column 43`
+<br>
+
+Please, modify the package.xml file using **your user name** and try again.
+
 
 If you already have all your dependencies, the console will return:<br>
 #All required rosdeps installed successfully
@@ -69,6 +83,8 @@ source install/setup.bash
 
 **NOTE:** This builds the package and sets a symbolic link to the python files (nodes and launch files). With this, re-build every time that a python file is modified, is not required.<br>
 In ROS 2, launch files may be written in yaml, xml or python languages, but it is extremely recommended to use python. Also, the name of all launch files must finish with 'launch.py'. Otherwise, the file will not be recognized.<br>
+
+If some warnings appear, run `colcon build --packages-select basic_diffbot --symlink-install` again and they will disappear.
 
 
 ## Meshes and models setup
@@ -98,7 +114,7 @@ or
 
 The 'one_robot_gz_launch.py' launch file, opens Gazebo using an empty or a custom world (SDF model), and spawns only one robot.
 
-**_Note: The first time it may take a while.*_*<br>
+**_Note: The first time it may take a while._** You can cancel the terminal with ctrl-c and try again.
 
 ```
 ros2 launch basic_diffbot one_robot_gz_launch.py
