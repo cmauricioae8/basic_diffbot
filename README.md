@@ -121,6 +121,19 @@ ros2 launch basic_diffbot one_robot_gz_launch.py
 ```
 This will spawns a robot, using the robot model configured in the launch file, in an empty world.
 
+**Important:** If the following error appears when launching the robot
+
+`gzclient: /usr/include/boost/smart_ptr/shared_ptr.hpp:728: typename boost::detail::sp_member_access<T>::type boost::shared_ptr<T>::operator->() const [with T = gazebo::rendering::Camera; typename boost::detail::sp_member_access<T>::type = gazebo::rendering::Camera*]: Assertion px != 0' failed`
+
+then run (at any directory):
+
+```
+. /usr/share/gazebo/setup.sh
+```
+
+This is needed to set some necessary environment variables in case they're going to be overridden, which is a common case when also using Ignition Gazebo simulator. 
+
+
 
 ## Teleoperating the robot
 
