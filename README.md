@@ -41,11 +41,32 @@ For example:
 <br>
 
 
-## Cloning and building this repo
+## Cloning this repo
 
 ```bash
 cd ~/colcon_ws/src
 git clone https://github.com/cmauricioae8/basic_diffbot.git
+```
+
+## Meshes and models setup
+
+**IMPORTANT:**
+To correctly visualize robots meshes and custom models in Gazebo with ROS 2, modify the package.xml file using **your user name**. This is
+```xml
+<export>
+  <build_type>ament_cmake</build_type>
+  <gazebo_ros gazebo_model_path = "/home/<----user_name---->/colcon_ws/install/basic_diffbot/share/" />
+</export>
+```
+That line should be like this
+
+`
+<gazebo_ros gazebo_model_path = "/home/mau/colcon_ws/install/basic_diffbot/share/" />
+`
+
+
+## Building this repo
+```
 cd ~/colcon_ws
 rosdep install -i --from-path src --rosdistro $ROS_DISTRO -y
 ```
@@ -71,9 +92,9 @@ Please, modify the package.xml file using **your user name** and try again.
 
 
 If you already have all your dependencies, the console will return:<br>
-#All required rosdeps installed successfully
+`#All required rosdeps installed successfully`
 
-**Note:** _This is made only once for the whole workspace._
+**Note: This is made only once for the whole workspace.**
 
 Then, build colcon ws:
 ```
@@ -86,28 +107,6 @@ In ROS 2, launch files may be written in yaml, xml or python languages, but it i
 
 If some warnings appear, run `colcon build --packages-select basic_diffbot --symlink-install` again and they will disappear.
 
-
-## Meshes and models setup
-
-**IMPORTANT:**
-To correctly visualize robots meshes and custom models in Gazebo with ROS 2, there are two options:
-
-1. Add the 'GAZEBO_MODEL_PATH' environment variable into the _.bashrc_ file. This is, by pasting the followinf line
-```
-export GAZEBO_MODEL_PATH=~/colcon_ws/install/basic_diffbot/share/
-```
-If that variable already exists, use ':' to add another path. For example:
-`export GAZEBO_MODEL_PATH=~/.gazebo/models:<path_to_your_model>`
-
-or
-
-2. Add the 'gazebo_ros' tag into the 'export' tag of the _package.xml_ file. This is
-```xml
-<export>
-  <build_type>ament_cmake</build_type>
-  <gazebo_ros gazebo_model_path = "/home/<user_name>/colcon_ws/install/basic_diffbot/share/" />
-</export>
-```
 
 
 ## Launching one robot in Gazebo
